@@ -136,7 +136,7 @@ def answer(call):
     elif 'btn_types_more_' in call.data:
         a = call.data.split('btn_types_more_')[1].split('_')
         print(data[a[0]][a[1]])
-        bot.send_message(call.message.chat.id, f'{data[a[0]][a[1]]['about']}')
+        bot.send_message(call.message.chat.id, f"{data[a[0]][a[1]]['about']}")
 
 
 if __name__ == '__main__':
