@@ -129,7 +129,7 @@ def answer(call):
                 btn_types1 = types.InlineKeyboardButton(text='Подробнее', callback_data=f"btn_types_more_{call.data.split('btn_types_')[1]}_{webinar}")
                 kb.add(btn_types1)
                 js = data[call.data.split('btn_types_')[1]][webinar]
-                text = f'***{js['name']}***\n{js['speaker']}\n{js['date']}'
+                text = f"***{js['name']}***\n{js['speaker']}\n{js['date']}"
                 bot.send_message(call.message.chat.id, text, reply_markup=kb, parse_mode='markdown')
         except:
             bot.send_message(call.message.chat.id, 'Пока что вебинары не запланированы. Следите за анонсами!')
