@@ -136,8 +136,12 @@ def answer(call):
     elif 'btn_types_more_' in call.data:
         a = call.data.split('btn_types_more_')[1].split('_')
         print(data[a[0]][a[1]])
-        bot.send_message(call.message.chat.id, f"{data[a[0]][a[1]]['about']}")
 
+        kb = types.InlineKeyboardMarkup()
+        btn_types1 = types.InlineKeyboardButton(text='Перейти на сайт', url=data[a[0]][a[1]]['url'])
+        kb.add(btn_types1)
+
+        bot.send_message(call.message.chat.id, f"{data[a[0]][a[1]]['about']}", reply_markup=kb)
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
