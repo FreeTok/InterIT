@@ -126,7 +126,7 @@ def answer(call):
             for webinar in data[call.data.split('btn_types_')[1]]:
                 print(call.data.split('btn_types_')[1], webinar)
                 kb = types.InlineKeyboardMarkup()
-                btn_types1 = types.InlineKeyboardButton(text='Подробнее', callback_data=f'btn_types_more_{call.data.split('btn_types_')[1]}_{webinar}')
+                btn_types1 = types.InlineKeyboardButton(text='Подробнее', callback_data=f"btn_types_more_{call.data.split('btn_types_')[1]}_{webinar}")
                 kb.add(btn_types1)
                 js = data[call.data.split('btn_types_')[1]][webinar]
                 text = f'***{js['name']}***\n{js['speaker']}\n{js['date']}'
