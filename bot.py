@@ -135,7 +135,6 @@ def answer(call):
             bot.send_message(call.message.chat.id, 'Пока что вебинары не запланированы. Следите за анонсами!')
     elif 'btn_types_more_' in call.data:
         a = call.data.split('btn_types_more_')[1].split('_')
-        print(data[a[0]][a[1]])
 
         kb = types.InlineKeyboardMarkup()
         btn_types1 = types.InlineKeyboardButton(text='Перейти на сайт', url=data[a[0]][a[1]]['url'])
