@@ -14,7 +14,7 @@ btn_types1 = types.KeyboardButton(text='Вебинары')
 btn_types2 = types.KeyboardButton(text='Навигация')
 kb.add(btn_types1, btn_types2)
 
-kb1 = types.InlineKeyboardMarkup()
+kb1 = types.InlineKeyboardMarkup(row_width=1)
 btn_types1 = types.InlineKeyboardButton(text='Рекрутмент', callback_data='btn_types_recrutment')
 btn_types2 = types.InlineKeyboardButton(text='Новости hh.ru и советы по работе', callback_data='btn_types_news')
 btn_types3 = types.InlineKeyboardButton(text='Развитие бренда работодателя', callback_data='btn_types_brand')
@@ -28,16 +28,16 @@ btn_types1 = types.InlineKeyboardButton(text='❤️', callback_data='btn_types_
 btn_types2 = types.InlineKeyboardButton(text='❌', callback_data='btn_types_no')
 kb3.add(btn_types1, btn_types2)
 
-kb4 = types.InlineKeyboardMarkup(row_width=2)
+kb4 = types.InlineKeyboardMarkup(row_width=1)
 btn_types1 = types.InlineKeyboardButton(text='Продвижение резюме', callback_data='btn_types_helpresume')
-btn_types2 = types.InlineKeyboardButton(text='Готовое резюме', callback_data='btn_types_readyresume')
-btn_types3 = types.InlineKeyboardButton(text='Рекомендации по резюме', callback_data='btn_types_recomendresume')
+btn_types2 = types.InlineKeyboardButton(text='Карьерный маркетплейс', callback_data='btn_types_readyresume')
+btn_types3 = types.InlineKeyboardButton(text='Карьерный консультант', callback_data='btn_types_recomendresume')
 btn_types4 = types.InlineKeyboardButton(text='Сетка', callback_data='btn_types_setka')
 kb4.add(btn_types1, btn_types2, btn_types3, btn_types4)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "Привет, меня зовут Ежик Хантер, работник компании Head Hunter, отвечаю за образование. В нашей компании я помогаю развиваться людям. Ты же знаешь, что мы проводим лекции и вебинары?", reply_markup=kb)
+    bot.send_message(message.chat.id, "Привет, меня зовут ёжик Хантер, работник компании Head Hunter, отвечаю за образование. В нашей компании я помогаю развиваться людям. Чем я могу помочь?", reply_markup=kb)
 
 @bot.message_handler()
 def get_message(message):
@@ -66,10 +66,10 @@ def answer(call):
     elif call.data == 'btn_types_helpresume':
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.delete_message(call.message.chat.id, call.message.message_id + 1)
-        bot.send_message(call.message.chat.id, 'Здесь тебе могут помочь с резюме')
+        bot.send_message(call.message.chat.id, parse_mode='markdown', text='***Продвижение резюме для быстрого поиска работы***\n\n***Автоподнятие резюме*** — резюме автоматически обновляется 5 раз в день, поднимаясь в верхние позиции для лучшей видимости работодателям.\n***Яркое выделение резюме*** — резюме становится заметнее в поисковой выдаче, привлекая больше внимания.\n***Статистика по вакансиям*** — доступ к данным по откликам на вакансии, включая зарплатные ожидания, навыки и опыт конкурентов.\n\nДополнительные сервисы:\n***Готовое резюме*** — профессиональная помощь в создании резюме для улучшения шансов на трудоустройство.\n***Профориентация*** — онлайн-тест для подбора подходящей профессиональной сферы.\n***Репетиция собеседования*** — тренировка для уверенного прохождения интервью.')
 
         kb3 = types.InlineKeyboardMarkup()
-        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://krasnogorsk.hh.ru/applicant/services/findjob?hhtmFrom=services&hhtmFromLabel=menu')
+        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://hh.ru/applicant/services/findjob')
         btn_types2 = types.InlineKeyboardButton(text='❌', callback_data='btn_types_no_helpresume')
         kb3.add(btn_types1, btn_types2)
 
@@ -78,10 +78,10 @@ def answer(call):
     elif call.data == 'btn_types_readyresume':
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.delete_message(call.message.chat.id, call.message.message_id + 1)
-        bot.send_message(call.message.chat.id, 'Здесь тебе могут показать пример резюме')
+        bot.send_message(call.message.chat.id, parse_mode='markdown' ,text='***Карьерный маркетплейс***\n\nЗадачи, которые данный сервис может помочь решить:\nСоздать резюме, составить карьерный план\nРазработать стратегию поиска работы\nПерейти в новую профессию или найти работу за границей\nПодготовиться к собеседованию\nПреодолеть синдром самозванца или справиться с выгоранием\n\nКарьерный наставник поможет:\nОпределить карьерные цели и пути их достижения\nСоставить резюме, стратегию поиска и подготовки к собеседованиям\nНайти подходящую профессию или сменить сферу деятельности\nПреодолеть профессиональные трудности\n\nРезультаты:\n100 000+ успешных консультаций\n86% клиентов достигли карьерных целей')
         
         kb3 = types.InlineKeyboardMarkup()
-        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://krasnogorsk.hh.ru/mentors?purposeId=1')
+        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://hh.ru/mentors')
         btn_types2 = types.InlineKeyboardButton(text='❌', callback_data='btn_types_no_readyresume')
         kb3.add(btn_types1, btn_types2)
 
@@ -91,10 +91,10 @@ def answer(call):
     elif call.data == 'btn_types_recomendresume':
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.delete_message(call.message.chat.id, call.message.message_id + 1)
-        bot.send_message(call.message.chat.id, 'Здесь тебе могут порекомендовать резюме')
+        bot.send_message(call.message.chat.id, 'Карьерный консультант hh.ru поможет улучшить ваше резюме для быстрого поиска работы. За 3 дня вы получите экспертные рекомендации по усилению ключевых разделов, привлечению внимания работодателей и упаковке опыта для нужной сферы, даже с минимальным стажем.')
 
         kb3 = types.InlineKeyboardMarkup()
-        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://krasnogorsk.hh.ru/article/resume_audit?hhtmFrom=services&hhtmFromLabel=menu')
+        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://hh.ru/article/resume_audit')
         btn_types2 = types.InlineKeyboardButton(text='❌', callback_data='btn_types_no_recomendresume')
         kb3.add(btn_types1, btn_types2)
 
@@ -104,14 +104,14 @@ def answer(call):
     elif call.data == 'btn_types_setka':
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.delete_message(call.message.chat.id, call.message.message_id + 1)
-        bot.send_message(call.message.chat.id, 'Это Сетка')
+        bot.send_message(call.message.chat.id, parse_mode='markdown', text='***Сетка*** — профессиональная соцсеть от hh.ru для обмена опытом, нетворкинга и карьерного роста. Она объединяет экспертов в сфере tech, digital и creative, помогая найти новых коллег, партнёров для проектов и быть в курсе трендов.\n\n***Ключевые преимущества***:\n- Быстрый вход в комьюнити специалистов.\n- Удобный поиск профессиональных контактов.\n- Возможность повышать видимость в сообществе.\n- Контент по интересам благодаря алгоритмам.\n\nПрисоединяйтесь к Сетке и расширяйте свои карьерные возможности!')
 
         kb3 = types.InlineKeyboardMarkup()
-        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://hi.setka.ru/?referrer=appmetrica_tracking_id%3D317055592281706223%26ym_tracking_id%3D925433669639828790')
+        btn_types1 = types.InlineKeyboardButton(text='❤️', url='https://hi.setka.ru')
         btn_types2 = types.InlineKeyboardButton(text='❌', callback_data='btn_types_no_setka')
         kb3.add(btn_types1, btn_types2)
 
-        bot.send_message(call.message.chat.id, 'Тебе интересно?', reply_markup=kb3)
+        bot.send_message(call.message.chat.id, parse_mode='markdown', text='Тебе интересно?', reply_markup=kb3)
 
     elif 'btn_types_no' in call.data:
         bot.delete_message(call.message.chat.id, call.message.message_id - 1)
